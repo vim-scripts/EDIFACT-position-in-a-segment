@@ -1,0 +1,21 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=313
+
+i spend quite a lot of time reading, editing, and translating EDIFACT messages.  so i have produced this to help me work out where i am in the file.
+
+the EDIFACT position dscription
+SG2.PNA.C816.3836
+isnt that helpful without a spec for reference.  the first two parts (segment group 2, segment PNA) are quite clear, but the last two arent very useful.
+
+for an example segment
+PNA+PAT+NHS_NUM1:OPI+++SU:SURNAME1+FO:FORENAME1A+TI:TITLE1+MI:FORENAME1B+FS:FORENAME1C'
+
+that is the fragment "SURNAME1"
+
+so instead i use numbers for the element and fragment positions, both numbered from zero.  "PNA" is element zero, "PAT" element one, etc.
+
+using this function, place your cursor in the "SURNAME1" fragment, and it will return the info:
+element = 5 , fragment = 1
+
+when using this, make sure that every segment starts on a new line in your file (search for ' and replace with '\r will do this nicely).  trying to read EDIFACT when it is all one line is just to painful, so i dont recorment it.
+
+this function has the seperators "+" and ":" hard coded at the moment, and doesnt handle escaped seperators.
